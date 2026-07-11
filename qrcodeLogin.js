@@ -16,13 +16,13 @@ const QRCode = require('./api/node_modules/qrcode')
  */
 function renderQrAscii(url) {
   const qr = QRCode.create(url, { margin: 1 })
-  const size = qr.modules.size
-  const get = qr.modules.get
+  const modules = qr.modules
+  const size = modules.size
   let ascii = ''
   for (let r = 0; r < size; r++) {
     let line = ''
     for (let c = 0; c < size; c++) {
-      line += get(c, r) ? '██' : '  '
+      line += modules.get(r, c) ? '██' : '  '
     }
     ascii += line + '\n'
   }
